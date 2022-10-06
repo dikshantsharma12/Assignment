@@ -1,0 +1,84 @@
+body {
+  background-image: url("../public/bg.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.container{
+  margin-top: 20px;
+}
+
+.weather-desc {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.weather-desc-text {
+  font-size: 40px;
+}
+
+.weather-temp {
+  text-align: center;
+}
+
+.weather-temp span{
+  font-size: 120px;
+}
+
+.weather-info{
+  background-color: rgba(255, 255, 255, 0.4);
+  width: 250px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.weather-sec{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.temperature{ 
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.temperature span{
+  font-size: 24px;
+}
+
+.Details{ 
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.Details span{
+  font-size: 18px;
+}
+
+.detail-sec{
+  display: flex;
+  justify-content: space-between;
+}
+
+.sun-desc{ 
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.sun-desc span{
+  font-size: 18px;
+}
+
+.temp-sec{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+@media screen and (max-width: 480px)  {
+  .weather-sec {
+    flex-direction: column;
+    align-items: center;
+  }
+}
