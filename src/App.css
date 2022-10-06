@@ -20,6 +20,7 @@ body {
 
 .weather-temp {
   text-align: center;
+  line-height: 1
 }
 
 .weather-temp span{
@@ -74,6 +75,38 @@ body {
 .temp-sec{
   display: flex;
   justify-content: space-evenly;
+}
+
+.forecast-section {
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 10px;
+  margin: 10px;
+  width: 830px;
+}
+
+.forecast-detail{
+  text-align: center;
+}
+
+.forecast-temperature{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.forecast-container{
+  display: flex;
+  justify-content: center;
+}
+
+.button-next {
+  background: #1b4de5;
+  border: none;
+  padding: 10px;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 15px;
+  float: right;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 480px)  {

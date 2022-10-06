@@ -1,14 +1,34 @@
+import React, { useState } from "react";
 import './App.css';
 let weather_data = require('./weather.json');
 
 function App() {
+  const [currentDate, setCurrentDate] = useState(0);
+  const [buttonShow, setButtonShow] = useState(true);
+
   let current_weather_detail = (weather_data?.query?.results?.channel?.item?.forecast).filter(function (el) {
     return el.code === weather_data?.query.results?.channel?.item?.condition.code;
   });
 
+  var forecast_data = weather_data?.query?.results?.channel?.item?.forecast
+  var theRemovedElement = forecast_data.slice(1)
+
+  const handleChange = (data) => {
+    if ((theRemovedElement.length - 2) == data) {
+      setButtonShow(false)
+    }
+    if (theRemovedElement.length == data) {
+      return false
+    }
+    setCurrentDate(data + 1)
+  }
+
   return (
     <div className="container">
-      <div className='weather-desc'><span><img src='location.png' height={40} style={{ marginTop: '20px' }} /></span><h1 style={{ textAlign: 'center' }}>{weather_data?.query?.results?.channel?.location?.city} City, {weather_data?.query?.results?.channel?.location?.region}, {weather_data?.query?.results?.channel?.location?.country}</h1></div>
+      <div className='weather-desc'><span><img src='location.png' height={40} style={{ marginTop: '20px' }} /></span><h1 style={{ textAlign: 'center' }}>{weather_data?.query?.results?.channel?.location?.city} City, {weather_data?.query?.results?.channel?.location?.region}, {weather_data?.query?.results?.channel?.location?.country}</h1>
+      </div>
+
+      <div className='weather-desc'><span><img src='date.png' height={25} style={{marginRight: '5px', marginTop: '2px'}}/></span><span><h3 style={{ textAlign: 'center', lineHeight: 0 }}> {current_weather_detail[0]?.day}, {current_weather_detail[0]?.date}</h3></span></div>
 
 
       <div className='weather-desc'>
@@ -49,7 +69,28 @@ function App() {
           </div>
         </div>
       </div>
-    </div>
+
+      <div className='forecast-container'>
+        <div className='forecast-section'><h2 style={{ textAlign: 'center' }}>Forecast for {weather_data?.query?.results?.channel?.location?.city} City, {weather_data?.query?.results?.channel?.location?.region}, {weather_data?.query?.results?.channel?.location?.country}</h2>
+          <p className='forecast-detail'>
+            <h3>{theRemovedElement[currentDate]?.day}, {theRemovedElement[currentDate]?.date}</h3>
+            <div className='weather-desc'>
+              <span><img src='cloudy_day_night.png' width={55} /></span>
+              <span className='weather-desc-text'>{theRemovedElement[currentDate]?.text}</span>
+            </div>
+            <div className='temperature'>
+              <div className=''>
+                <span style={{ marginRight: '30px' }}><span><img src='high-temp.png' width={20} /></span>{theRemovedElement[currentDate]?.high}°</span>
+                <span><span><img src='low-temp.png' width={20} /></span>{theRemovedElement[currentDate]?.low}°</span>
+              </div>
+            </div>
+          </p>
+          {buttonShow && <button onClick={() => handleChange(currentDate + 1)} className="button-next">Next Day</button>
+          }
+        </div>
+
+      </div>
+    </div >
 
   );
 }
